@@ -1,11 +1,14 @@
-FROM python:3
+FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y git
-RUN apt install spiderfoot
+# Install git to fetch the source
+RUN apt-get update && apt-get install -y --no-install-recommends git && \
+    rm -rf /var/lib/apt/lists/*
 
-WORKDIR spiderfoot
-RUN pip install -r requirements.txt
+# Clone SpiderFoot and install Python deps
+WORKDIR /opt/spiderfoot
+RUN git clone --depth=1 https://github.com/smicallef/spiderfoot.git . && \
+    pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5001
-
-CMD ["python", "sf.py"]
+# Run the web UI on 0.0.0.0:5001
+CMD ["python", "sf.py", "-l", "0.0.0.0:5001"]
