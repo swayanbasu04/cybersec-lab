@@ -6,14 +6,14 @@ services:
       dockerfile: Dockerfile.kali
     networks:
       - cybersec-lab
-  
-  spiderfoot:
-    build:
-      context: .
-      dockerfile: Dockerfile.spiderfoot
-    ports:
-      - "5001:5001"
-  
+
+# spiderfoot:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.spiderfoot
+#    ports:
+#     - "5001:5001"
+
   metasploit:
     image: metasploitframework/metasploit-framework
 
