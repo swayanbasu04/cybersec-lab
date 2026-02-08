@@ -19,7 +19,7 @@ A collection of Docker containers for cybersecurity tools.
 ```bash
 git clone https://github.com/swayanbasu04/securecyber-lab.git
 cd securecyber-lab
-docker-compose up -d
+docker compose up -d
 ```
 ###Accessing Services
 - After containers are running, you can access various services through web browser or terminal. Here’s how:
