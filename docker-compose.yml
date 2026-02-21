@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  kali:
+    build:
+      context: .
+      dockerfile: Dockerfile.kali
+    container_name: kali-lab
+    networks:
+      - cybersec-lab
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+  metasploit:
+    image: metasploitframework/metasploit-framework
+    container_name: msf-lab
+    networks:
+      - cybersec-lab
+    stdin_open: true
+    tty: true
+
+  # elk:
+  #   image: sebp/elk
+  #   container_name: elk-stack
+  #   ports:
+  #     - "5601:5601"
+  #     - "9200:9200"
+  #   networks:
+  #     - cybersec-lab
+  #   environment:
+  #     - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 2G
+
+networks:
+  cybersec-lab:
+    driver: bridge
